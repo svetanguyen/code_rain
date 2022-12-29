@@ -10,7 +10,7 @@ class DigitalRain {
         this.getLength()
 
         for (let i = 0; i < this.widthLength; i++) {
-            this.generateRandomText(this.heightLength)
+            this.generateRandomText(this.heightLength, i)
         }
     }
 
@@ -19,15 +19,17 @@ class DigitalRain {
         this.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     }
 
-    generateRandomText(length) {
+    generateRandomText(length, index) {
         const charactersLength = this.characters.length;
         if (!charactersLength || !characters) return
         const mainWrapper = document.createElement('div')
         mainWrapper.classList.add('line')
+        const animationDelay = Math.floor(Math.random() * this.widthLength)
         for ( let i = 0; i < length; i++ ) {
-            const wrapper = document.createElement('span')
+            const wrapper = document.createElement('p')
             const letter = characters.charAt(Math.floor(Math.random() * charactersLength))
-            wrapper.innerHTML = letter;
+            wrapper.innerHTML = letter
+            wrapper.style.animationDelay = i * 300 + animationDelay * 100 + 'ms'
             mainWrapper.appendChild(wrapper)
         }
         this.wrapper.appendChild(mainWrapper)
@@ -35,8 +37,8 @@ class DigitalRain {
     }
 
     getLength() {
-        this.widthLength = Math.floor(this.width / 23)
-        this.heightLength = Math.floor(this.height / 22)
+        this.widthLength = Math.floor(this.width / 30)
+        this.heightLength = Math.floor(this.height / 30)
     }
 
 }
